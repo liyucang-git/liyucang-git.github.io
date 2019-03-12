@@ -1,43 +1,43 @@
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification"
-        content="xEoKJb-w2TvL8_EKfRT5L6n9OjWs4PCY6E6CpuHSqlE" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ site.description }}">
-    <meta name="keywords" content="{{ site.keyword }}">
-    <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
-    <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{
-        site.SEOTitle }}{% endif %}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="google-site-verification"
+    content="xEoKJb-w2TvL8_EKfRT5L6n9OjWs4PCY6E6CpuHSqlE" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ site.description }}">
+  <meta name="keywords" content="{{ site.keyword }}">
+  <meta name="theme-color" content="{{ site.chrome-tab-theme-color }}">
+  <title>{% if page.title %}{{ page.title }} - {{ site.SEOTitle }}{% else %}{{
+    site.SEOTitle }}{% endif %}</title>
 
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="{{ site.baseurl }}/pwa/manifest.json">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ site.baseurl }}/img/blog.ico">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ site.baseurl }}/img/blog.ico">
 
-    <!-- Safari Webpage Icon -->
-    <link rel="apple-touch-icon" href="{{ site.baseurl
-        }}/img/apple-touch-icon.png">
+  <!-- Safari Webpage Icon -->
+  <link rel="apple-touch-icon" href="{{ site.baseurl
+    }}/img/apple-touch-icon.png">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend:
-        site.baseurl | prepend: site.url }}">
+  <!-- Canonical URL For SEO -->
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend:
+    site.baseurl | prepend: site.url }}">
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="{{" /css/bootstrap.min.css" |
-        prepend:site.baseurl }}">
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="{{" /css/bootstrap.min.css" |
+    prepend:site.baseurl }}">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{" /css/hux-blog.min.css" | prepend:
-        site.baseurl }}">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{" /css/hux-blog.min.css" | prepend:
+    site.baseurl }}">
 
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="{{" /css/syntax.css" | prepend: site.baseurl
-        }}">
+  <!-- Pygments Github CSS -->
+  <link rel="stylesheet" href="{{" /css/syntax.css" | prepend: site.baseurl
+    }}">
 
-    <link
-        href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
-        rel="stylesheet" type="text/css">
+  <link
+    href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
+    rel="stylesheet" type="text/css">
 
 </head>

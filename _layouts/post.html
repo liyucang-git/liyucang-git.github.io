@@ -2,9 +2,6 @@
 layout: default
 ---
 
-<!-- Image to hack wechat -->
-<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
@@ -87,7 +84,7 @@ layout: default
         </ul>
 
 
-        <!--Gitalk评论start  -->
+        <!--Gitalk评论  -->
         {% if site.gitalk.enable %}
         <!-- 引入Gitalk评论插件  -->
         <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
@@ -103,13 +100,12 @@ layout: default
                     repo: '{{site.gitalk.repo}}',
                     owner: '{{site.gitalk.owner}}',
                     admin: ['{{site.gitalk.admin}}'],
-                    distractionFreeMode: {{site.gitalk.distractionFreeMode}},
+                    distractionFreeMode: '{{site.gitalk.distractionFreeMode}}',
                     id: md5(location.pathname),
                     });
                     gitalk.render('gitalk-container');
                 </script>
         {% endif %}
-        <!-- Gitalk end -->
 
         {% if site.disqus_username %}
         <!-- disqus 评论框 start -->
@@ -136,41 +132,6 @@ layout: default
         </div>
       </div>
       {% endif %}
-
-      <!-- Sidebar Container -->
-      <div class="col-lg-8 col-lg-offset-2
-        col-md-10 col-md-offset-1
-        sidebar-container">
-
-        <!-- Featured Tags -->
-        {% if site.featured-tags %}
-        <section>
-          <hr class="hidden-sm hidden-xs">
-          <h5><a href="/tags/">FEATURED TAGS</a></h5>
-          <div class="tags">
-            {% for tag in site.tags %}
-            {% if tag[1].size > {{site.featured-condition-size}} %}
-            <a href="/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{
-              tag[1].size }}">
-              {{ tag[0] }}
-            </a>
-            {% endif %}
-            {% endfor %}
-          </div>
-        </section>
-        {% endif %}
-
-        <!-- Friends Blog -->
-        {% if site.friends %}
-        <hr>
-        <h5>FRIENDS</h5>
-        <ul class="list-inline">
-          {% for friend in site.friends %}
-          <li><a href="{{friend.href}}">{{friend.title}}</a></li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
     </div>
   </div>
 </article>

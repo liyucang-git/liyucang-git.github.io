@@ -1,6 +1,7 @@
 ---
 layout: page
-description: "Thinking will not overcome fear but action will."
+description: "Thinking will not overcome fear but action will"
+header-img: img/post-bg-default.jpg
 ---
 
 {% for post in paginator.posts %}
@@ -19,7 +20,8 @@ description: "Thinking will not overcome fear but action will."
         </div>
     </a>
     <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
+        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title
+        }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
     </p>
 </div>
 <hr>
@@ -30,12 +32,14 @@ description: "Thinking will not overcome fear but action will."
 <ul class="pager">
     {% if paginator.previous_page %}
     <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl |
+            replace: '//', '/' }}">&larr; Newer Posts</a>
     </li>
     {% endif %}
     {% if paginator.next_page %}
     <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace:
+            '//', '/' }}">Older Posts &rarr;</a>
     </li>
     {% endif %}
 </ul>
