@@ -2,7 +2,23 @@
   "name": "Li Yucang Blog",
   "short_name": "Yucang Blog",
   "description": "A personal blog by Li Yucang",
-  "icons": [],
+  "icons": [
+    {
+      "src": "icons/apple-touch-icon-precomposed-76x76.png",
+      "sizes": "76x76",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/apple-touch-icon-precomposed-120x120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/apple-touch-icon-precomposed-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    }
+  ],
   "background_color": "#fff",
   "theme_color": "#000",
   "start_url": "/",
