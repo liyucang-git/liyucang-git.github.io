@@ -63,8 +63,8 @@ service-worker: false
 
 # 友情连接
 friends: [
-    # {
-    #     title: "Apple Developer",
-    #     href: "https://developer.apple.com/"
-    # }
+    {
+        title: "GitHub",
+        href: "https://github.com"
+    }
 ]
