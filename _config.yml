@@ -1,6 +1,6 @@
 title: Li Yucang
 SEOTitle: 李宇仓 | Li Yucang
-header-img: img/post-bg-default.jpg
+header-img: img/bg/home-bg.jpg
 email: 765313580@qq.com
 description: "李宇仓的博客"
 keyword: "李宇仓, Li Yucang, Yucang, liyucang, 李宇仓的博客, js, web"
@@ -10,7 +10,7 @@ github_repo: "https://github.com/liyucang-git/liyucang-git.github.io.git" # 博�
 
 sidebar: true # 是否显示侧边栏
 sidebar-about-description: "Goals determine what you going to be!"
-sidebar-avatar: /img/about-BY-gentle.png # 使用绝对路径
+sidebar-avatar: /img/site/about-BY-gentle.png # 使用绝对路径
 
 zhihu_username: xiang-cai-rou-jia-mo
 github_username: liyucang-git
