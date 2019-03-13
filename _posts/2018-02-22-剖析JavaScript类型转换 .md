@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      剖析JavaScript类型转换
+# subtitle:
+date:       2018-02-22
+author:     Li Yucang
+catalog: true
+tags:
+    - js
+---
+
 # 剖析JavaScript类型转换 
 
 js在使用`==`进行比较的时候，如果`==`两边类型不同则会发生隐式类型转换。很多初学者对这块理解的不够，今天就让我们一起把它弄清楚吧，先来一段典型的具有迷惑性的代码:
@@ -46,13 +57,13 @@ undefined==null
 
 首先在进行比较之前由于 ! 的优先级高于 ==，所以会先对 ![]求值，这里我们了解一下常见运算符的优先级：
 
-![](http://cdn.liyucang.club/blog/1537543198570_687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f6136363063616232677931666379396f6d623275636a3230763230766967706f.jpeg)
+![](http://cdn.vivigo.xyz/blog/1537543198570_687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f6136363063616232677931666379396f6d623275636a3230763230766967706f.jpeg)
 
 ### toBoolean
 
 !称为逻辑非运算符，会先对目标值进行布尔类型转化（toBoolean），至于怎么转我们看下图：
 
-![](http://cdn.liyucang.club/blog/1537543557514_38225D04-13EC-499E-8159-3ACB04C2C591.png)
+![](http://cdn.vivigo.xyz/blog/1537543557514_38225D04-13EC-499E-8159-3ACB04C2C591.png)
 
 []是一个对象,所以对应转换成Boolean对象的值为true;那么![]对应的Boolean值就是false。
 
@@ -60,7 +71,7 @@ undefined==null
 
 根据我们整理的规范条件1，`==`运算符会将`true`转化（toNumber）为 1。我们平时使用 + 或者 Number 函数来进行数字转化就是根据toNumber规则，具体转化规则如下：
 
-![](http://cdn.liyucang.club/blog/1537544062986_96D1A8AF-9859-49F5-8FBD-879BD6E8DD88.png)
+![](http://cdn.vivigo.xyz/blog/1537544062986_96D1A8AF-9859-49F5-8FBD-879BD6E8DD88.png)
 
 注意表格中的String转化Number时，对字符串有严格要求，像：'3f'、'7.3.4'等不符合规范的值都会转化为NaN。
 
@@ -72,7 +83,7 @@ undefined==null
 
 再来看看ECMAScript标准怎么定义toPrimitive方法的:
 
-![](http://cdn.liyucang.club/blog/1537545261515_F3BC6DC0-E24C-41DD-B330-192A08161591.png)
+![](http://cdn.vivigo.xyz/blog/1537545261515_F3BC6DC0-E24C-41DD-B330-192A08161591.png)
 
 是不是看了这个定义,还是一脸懵逼,toPrimitive这尼玛什么玩意啊?这不是等于没说吗?别慌，经过翻阅资料，上面要说的可以概括成:
 
@@ -109,7 +120,7 @@ JavaScript调用valueOf方法将对象转换为原始值。你很少需要自己
 
 JavaScript的许多内置对象都重写了该函数，以实现更适合自身的功能需要。因此，不同类型对象的valueOf()方法的返回值和返回值类型均可能不同，具体见下图：
 
-![](http://cdn.liyucang.club/blog/1537545997556_1537545986578.jpg)
+![](http://cdn.vivigo.xyz/blog/1537545997556_1537545986578.jpg)
 
 ````
 // Array：返回数组对象本身
@@ -328,7 +339,7 @@ var x = {
 
 好了，说了那么多我们来总结一下：
 
-![](http://cdn.liyucang.club/blog/1537549487932_1537549474559.jpg)
+![](http://cdn.vivigo.xyz/blog/1537549487932_1537549474559.jpg)
 
 根据我们得到的最终的图，我们总结一下==运算的规则：
 

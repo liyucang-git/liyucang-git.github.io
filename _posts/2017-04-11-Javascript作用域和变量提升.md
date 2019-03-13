@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      Javascript作用域和变量提升
+# subtitle:
+date:       2017-04-11
+author:     Li Yucang
+catalog: true
+tags:
+    - js
+---
+
 # Javascript作用域和变量提升
 
 ## js作用域
@@ -163,7 +174,7 @@ num变量在var num声明之前被访问，所以被认定为undefined。
 
 通过声明阶段但是没有到达初始化阶段的变量是处于未定义的状态。
 
-![](http://cdn.liyucang.club/blog/1533799542640_1533799477(1).png)
+![](http://cdn.vivigo.xyz/blog/1533799542640_1533799477(1).png)
 
 注意，根据变量的生命周期，声明阶段和一般说的变量声明是不同的术语。简言之，引擎在三个阶段处理变量声明：声明阶段、初始化阶段和赋值阶段。
 
@@ -171,7 +182,7 @@ num变量在var num声明之前被访问，所以被认定为undefined。
 
 熟悉了生命周期阶段，我们用它们来描述引擎是怎样处理var变量的。
 
-![](http://cdn.liyucang.club/blog/1533799612722_1533799580(1).png)
+![](http://cdn.vivigo.xyz/blog/1533799612722_1533799580(1).png)
 
 假设一个场景，当JavaScript遇到一个作用域里有一个var声明的变量的函数。在任何语句执行之前，这个变量就通过了声明阶段和初始化阶段（第一步）。
 var variable在函数作用域中声明的位置不影响声明和初始化阶段。
@@ -197,7 +208,7 @@ multiplyByTen(4); // => 40
 
 假设一个函数声明语句function funName() {...}，这更加容易。
 
-![](http://cdn.liyucang.club/blog/1533799730259_1533799719(1).png)
+![](http://cdn.vivigo.xyz/blog/1533799730259_1533799719(1).png)
 
 声明、初始化、赋值阶段在函数作用域的开始立刻执行（只有一步）。funcName()可以在该作用域的任何地方调用，不依赖于声明语句的位置（甚至可以在最后）。
 
@@ -384,7 +395,7 @@ function testFn() {
 
 let变量的处理方式和var不同。最主要的区别就是声明和初始化阶段被分开了。
 
-![](http://cdn.liyucang.club/blog/1533799837074_1533799829(1).png)
+![](http://cdn.vivigo.xyz/blog/1533799837074_1533799829(1).png)
 
 
 现在假设解释器进入了一个块级作用域，作用域包含一个let variable语句。变量立刻通过了声明阶段，在作用域注册了它的名字（步骤 1）。

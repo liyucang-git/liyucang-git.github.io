@@ -1,3 +1,15 @@
+---
+layout:     post
+title:      简单明了区分escape、encodeURI和encodeURIComponent
+# subtitle:
+date:       2016-10-22
+author:     Li Yucang
+catalog: true
+tags:
+    - js
+    - api
+---
+
 # 简单明了区分escape、encodeURI和encodeURIComponent
 
 ## 前言
@@ -48,5 +60,5 @@ so:
 
 * 如果你需要编码整个URL，然后需要使用这个URL，那么用encodeURI。
 
-* 当你需要编码URL中的参数的时候，那么encodeURIComponent是最好方法。
+* 当你需要编码URL中的参数的时候，那么encodeURvIComponent是最好方法。
 
