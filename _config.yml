@@ -12,7 +12,6 @@ sidebar: true # 是否显示侧边栏
 sidebar-about-description: "Goals determine what you going to be!"
 sidebar-avatar: /img/about-BY-gentle.png # 使用绝对路径
 
-RSS: false
 zhihu_username: xiang-cai-rou-jia-mo
 github_username: liyucang-git
 twitter_username: lalalaaalaala
