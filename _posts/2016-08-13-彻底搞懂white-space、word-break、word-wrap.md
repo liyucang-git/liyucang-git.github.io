@@ -1,15 +1,15 @@
 ---
-layout:     post
-title:      彻底搞懂word-break、word-wrap、white-space
-# subtitle:
-date:       2016-08-13
-author:     Li Yucang
+layout: post
+title: 彻底搞懂white-space、word-break、word-wrap
+subtitle: 解析页面文本换行机制
+date: 2016-08-13
+author: Li Yucang
 catalog: true
 tags:
     - css
 ---
 
-# 彻底搞懂word-break、word-wrap、white-space
+# 彻底搞懂white-space、word-break、word-wrap
 
 今天我们来将一下css中三个让人迷惑而傻傻分不清的属性，在平时我们可能有用到过这些属性，但我们真的有把它们弄懂吗？今天我来带大家把这三个属性彻底搞清楚！
 
