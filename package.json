@@ -1,14 +1,16 @@
 {
-    "name": "Li Yucang Blog",
-    "title": "Li Yucang Blog",
-    "author": "Li Yucang <765313580@qq.com>",
-    "version": "1.0.0",
-    "homepage": "https://liyucang-git.github.io",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/liyucang-git/liyucang-git.github.io"
-    },
-    "bugs": "https://github.com/liyucang-git/liyucang-git.github.io/issues",
-    "devDependencies": {},
-    "scripts": {}
+  "name": "LiYucangBlog",
+  "title": "LiYucangBlog",
+  "author": "Li Yucang <765313580@qq.com>",
+  "version": "1.0.0",
+  "homepage": "https://liyucang-git.github.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liyucang-git/liyucang-git.github.io"
+  },
+  "bugs": "https://github.com/liyucang-git/liyucang-git.github.io/issues",
+  "devDependencies": {},
+  "scripts": {
+    "cp": "git add . && git commit -m\"blog\" && git push"
+  }
 }
