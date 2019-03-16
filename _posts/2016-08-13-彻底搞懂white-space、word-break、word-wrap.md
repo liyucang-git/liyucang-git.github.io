@@ -37,7 +37,7 @@ tags:
 
 ## white-space
 
-正如它的名字，这个属性是用来控制空白字符的显示的，同时还能控制是否自动换行。它有五个值：normal | nowrap | pre | pre-wrap | pre-line。因为默认是normal，所以我们主要研究下其它四种值时的展现情况。（为了方便比较，下文所有图，左侧为normal即初始情况，右侧为赋上相应值时的情况）
+正如它的名字，这个属性是用来控制空白字符的显示的，同时还能控制是否自动换行。它有五个值：normal、nowrap、pre、pre-wrap、pre-line。因为默认是normal，所以我们主要研究下其它四种值时的展现情况。（为了方便比较，下文所有图，左侧为normal即初始情况，右侧为赋上相应值时的情况）
 
 ### white-space:nowrap
 
@@ -71,7 +71,7 @@ tags:
 
 ## word-break
 
-从这个名字可以知道，这个属性是控制单词如何被拆分换行的。它有三个值：normal | break-all | keep-all。
+从这个名字可以知道，这个属性是控制单词如何被拆分换行的。它有三个值：normal、break-all、keep-all。
 
 ### word-break:keep-all
 
@@ -93,7 +93,7 @@ word-wrap又叫做overflow-wrap：
 
 >word-wrap 属性原本属于微软的一个私有属性，在 CSS3 现在的文本规范草案中已经被重名为 overflow-wrap 。 word-wrap 现在被当作 overflow-wrap 的 “别名”。 稳定的谷歌 Chrome 和 Opera 浏览器版本支持这种新语法。
 
-这个属性也是控制单词如何被拆分换行的，实际上是作为word-break的互补，它只有两个值：normal | break-word，那我们看下break-word：
+这个属性也是控制单词如何被拆分换行的，实际上是作为word-break的互补，它只有两个值：normal、break-word，那我们看下break-word：
 
 ![](http://cdn.vivigo.xyz/blog/1552642286531_1677.png)
 
@@ -103,8 +103,8 @@ word-wrap又叫做overflow-wrap：
 
 最后总结一下三个属性：
 
-* white-space，控制空白字符的显示，同时还能控制是否自动换行。它有五个值：normal | nowrap | pre | pre-wrap | pre-line
-* word-break，控制单词如何被拆分换行。它有三个值：normal | break-all | keep-all
-* word-wrap（overflow-wrap）控制长度超过一行的单词是否被拆分换行，是word-break的补充，它有两个值：normal | break-word
+* white-space，控制空白字符的显示，同时还能控制是否自动换行。它有五个值：normal、nowrap、pre、pre-wrap、pre-line
+* word-break，控制单词如何被拆分换行。它有三个值：normal、break-all、keep-all
+* word-wrap（overflow-wrap）控制长度超过一行的单词是否被拆分换行，是word-break的补充，它有两个值：normal、break-word
 
 相信读完了本文，你应该对white-space、word-break、word-wrap有比较系统的认识了吧，如果短时间还是记不住那就赶快收藏起来下次再来看一遍吧。
