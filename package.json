@@ -11,6 +11,6 @@
   "bugs": "https://github.com/liyucang-git/liyucang-git.github.io/issues",
   "devDependencies": {},
   "scripts": {
-    "cp": "git add . && git commit -m\"blog\" && git push"
+    "cap": "git add . && git commit -m\"blog\" && git push"
   }
 }
