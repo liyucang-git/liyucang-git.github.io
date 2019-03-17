@@ -1,9 +1,9 @@
 ---
-layout:     post
-title:      Javascript作用域和变量提升
-# subtitle:
-date:       2017-04-11
-author:     Li Yucang
+layout: post
+title: Javascript作用域和变量提升
+subtitle: 探索变量的生命周期
+date: 2017-04-11
+author: Li Yucang
 catalog: true
 tags:
     - js
@@ -615,7 +615,7 @@ bar();
 
 执行结果是1;
 
-#### ES6中关于函数的例子：
+#### ES6中关于函数的例子
 
 ````
 function f() { console.log('I am outside!'); }

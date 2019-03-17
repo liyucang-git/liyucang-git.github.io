@@ -1,9 +1,9 @@
 ---
-layout:     post
-title:      简单明了区分escape、encodeURI和encodeURIComponent
-# subtitle:
-date:       2016-10-22
-author:     Li Yucang
+layout: post
+title: 简单明了区分escape、encodeURI和encodeURIComponent
+subtitle: js编码的几种方式
+date: 2016-10-22
+author: Li Yucang
 catalog: true
 tags:
     - js
