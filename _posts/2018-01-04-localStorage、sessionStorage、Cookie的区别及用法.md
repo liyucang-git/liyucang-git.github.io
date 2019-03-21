@@ -1,7 +1,7 @@
 ---
 layout: post
 title: localStorage、sessionStorage、Cookie的区别及用法
-# subtitle:
+subtitle: 比较几种浏览器缓存的异同
 date: 2018-01-04
 author: Li Yucang
 catalog: true
@@ -18,11 +18,11 @@ HTML5 提供了在客户端存储数据的新方法webstorage，包括localStora
 
 ### localStorage
 
->localStorage生命周期是永久，这意味着除非用户显示在浏览器提供的UI上清除localStorage信息，否则这些信息将永远存在。存放数据大小为一般为5MB，而且它仅在客户端(即浏览器)中保存，不参与和服务器的通信。
+localStorage生命周期是永久，这意味着除非用户显示在浏览器提供的UI上清除localStorage信息，否则这些信息将永远存在。存放数据大小为一般为5MB，而且它仅在客户端(即浏览器)中保存，不参与和服务器的通信。
 
 ### sessionStorage
 
->sessionStorage仅在当前会话下有效，关闭页面或浏览器后被清除。存放数据大小为一般为5MB，而且它仅在客户端(即浏览器)中保存，不参与和服务器的通信。源生接口可以接受，亦可再次封装来对Object和Array有更好的支持。
+sessionStorage仅在当前会话下有效，关闭页面或浏览器后被清除。存放数据大小为一般为5MB，而且它仅在客户端(即浏览器)中保存，不参与和服务器的通信。源生接口可以接受，亦可再次封装来对Object和Array有更好的支持。
 
 localStorage和sessionStorage使用时使用相同的API:
 
@@ -44,7 +44,7 @@ localStorage.lastname="LiYucang";
 
 ## Cookie
 
->生命期为只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。 存放数据大小为4K左右 。与服务器端通信:每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题。但Cookie需要程序员自己封装，源生的Cookie接口不友好。
+生命期为只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。 存放数据大小为4K左右 。与服务器端通信:每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题。但Cookie需要程序员自己封装，源生的Cookie接口不友好。
 
 ````
 document.cookie
