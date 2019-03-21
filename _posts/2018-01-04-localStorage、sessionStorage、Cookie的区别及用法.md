@@ -1,9 +1,9 @@
 ---
-layout:     post
-title:      localStorage、sessionStorage、Cookie的区别及用法
+layout: post
+title: localStorage、sessionStorage、Cookie的区别及用法
 # subtitle:
-date:       2018-01-04
-author:     Li Yucang
+date: 2018-01-04
+author: Li Yucang
 catalog: true
 tags:
     - 缓存
