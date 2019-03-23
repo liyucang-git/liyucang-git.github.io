@@ -95,14 +95,19 @@ function getCookie(name) {
 
 这里给大家简单介绍一下同源策略的概念。首先，什么页面具有相同源呢:
 
->如果两个页面的协议，端口(如果有指定)和域名都相同，则两个页面具有相同的源。
+如果两个页面的协议，端口(如果有指定)和域名都相同，则两个页面具有相同的源。
 
 我们也可以用js将页面的源进行更改:
 
->页面可能会因某些限制而改变他的源。脚本可以将 document.domain 的值设置为其当前域或其当前域的超级域。如果将其设置为其当前域的超级域，则较短的域将用于后续源检查。假设 http://store.company.com/dir/other.html 文档中的一个脚本执行以下语句:
+页面可能会因某些限制而改变他的源。脚本可以将 document.domain 的值设置为其当前域或其当前域的超级域。如果将其设置为其当前域的超级域，则较短的域将用于后续源检查。假设 http://store.company.com/dir/other.html 文档中的一个脚本执行以下语句:
+
   `document.domain = "company.com";`
+
+
 这条语句执行之后，页面将会成功地通过对 http://company.com/dir/page.html 的同源检测(假设http://company.com/dir/page.html 将其 document.domain 设置为“company.com”，以表明它希望允许这样做 - 更多有关信息，请参阅 document.domain )。然而，company.com 不能设置 document.domain 为 othercompany.com，因为它不是 company.com 的超级域。
+
 浏览器单独保存端口号。任何的赋值操作，包括 document.domain = document.domain 都会导致端口号被重写为 null 。因此 company.com:8080 不能仅通过设置 document.domain = "company.com" 来与company.com 通信。必须在他们双方中都进行赋值，以确保端口号都为 null 。
+
 注意:使用 document.domain 来允许子域安全访问其父域时，您需要在父域和子域中设置 document.domain 为相同的值。这是必要的，即使这样做只是将父域设置回其原始值。不这样做可能会导致权限错误。
 
 这里简单介绍一下，后续会对cors做一个具体、全面的解析。
