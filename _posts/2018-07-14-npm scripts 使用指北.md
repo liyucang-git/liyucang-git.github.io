@@ -1,9 +1,9 @@
 ---
-layout:     post
-title:      npm scripts 使用指南
+layout: post
+title: npm scripts 使用指南
 # subtitle:
-date:       2018-07-14
-author:     Li Yucang
+date: 2018-07-14
+author: Li Yucang
 catalog: true
 tags:
     - npm
