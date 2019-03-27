@@ -1,7 +1,7 @@
 ---
 layout: post
 title: npm scripts 使用指南
-# subtitle:
+subtitle: 彻底搞懂npm script脚本
 date: 2018-07-14
 author: Li Yucang
 catalog: true
