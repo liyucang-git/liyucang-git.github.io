@@ -8,7 +8,6 @@ DNS解析会出错吗，为什么
 ES6的Set内部实现
 如何应对流量劫持
 算法：top-K问题，分成top-1,top-2,top-K三小问
-跨域
 webpack的plugins和loaders的实现原理
 vue和react谈谈区别和选型考虑
 webpack如何优化编译速度
@@ -73,7 +72,6 @@ symbol应用
 深拷贝
 dns解析流程
 怼项目
-跨域
 性能优化
 ssr优缺点
 贝塞尔曲线
