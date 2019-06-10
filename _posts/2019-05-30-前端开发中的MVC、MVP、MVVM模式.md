@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 前端开发中的MVC、MVP、MVVM模式
-subtitle: 
+subtitle: 浅谈软件架构设计模式
 date: 2019-05-30
 author: Li Yucang
 catalog: true
