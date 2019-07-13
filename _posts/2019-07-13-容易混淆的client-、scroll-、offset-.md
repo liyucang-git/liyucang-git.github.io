@@ -28,7 +28,9 @@ tags:
 
 ### offsetWidth & offsetHeight
 
-任何 HTML 元素的只读属性 offsetWidth 和 offsetHeight 已 CSS 像素返回它的屏幕尺寸，返回的尺寸包干元素的边框和内边距（width/height + border + padding），和滚动条。
+offsetHeight 包括 padding、border、水平滚动条，但不包括 margin 的元素的高度。对于 inline 的元素这个属性一直是 0，单位 px，只读属性。
+
+![](/img/localBlog/1563017558042.jpg)
 
 ### offsetLeft & offsetTop
 
@@ -58,13 +60,11 @@ function getElementPosition(e){
 
 ## client
 
-client 是一种间接指代，它就是 web 浏览器客户端，专指它定义的窗口或视口。
-
 ### clientWidth & clientHeight
 
-clientWidth 和 clientHeight 类似于 offsetWidth 和 offsetHeight，不同的是不包含边框大小（width/height + padding）。同时在有滚动条的情况下，clientWidth 和 clientHeight 在其返回值中也不包含滚动条。
+clientHeight 包括 padding 但不包括 border、水平滚动条、margin 的元素的高度。对于 inline 的元素这个属性一直是 0，单位 px，只读属性。
 
-对于内联元素，总是返回 0
+![](/img/localBlog/1563017407707.jpg)
 
 ### clientLeft & clientTop
 
@@ -74,14 +74,18 @@ clientWidth 和 clientHeight 类似于 offsetWidth 和 offsetHeight，不同的�
 
 ## scroll
 
+当元素的子元素比元素高且 overflow=scroll 时，元素会出现滚动条。
+
 ### scrollWidth & scrollHeight
 
-这两个属性是元素的内容区域加上内边距，在加上任何溢出内容的尺寸.
+因为子元素比父元素高，父元素不想被子元素撑的一样高就显示出了滚动条，在滚动的过程中本元素有部分被隐藏了，scrollHeight 代表包括当前不可见部分的元素的高度。
 
-因此，如果没有溢出时，这些属性与 clientWidth 和 clientHeight 是相等的。
+而可见部分的高度其实就是 clientHeight，也就是 scrollHeight>=clientHeight 恒成立。在有滚动条时讨论 scrollHeight 才有意义，在没有滚动条时 scrollHeight==clientHeight 恒成立。单位 px，只读元素。
+
+![](/img/localBlog/1563017727539.jpg)
 
 ### scrollLeft & scrollTop
 
-指定的是元素的滚动条的位置
+scrollTop 代表在有滚动条时，滚动条向下滚动的距离也就是元素顶部被遮住部分的高度。在没有滚动条时 scrollTop==0 恒成立。单位 px，可读可设置。
 
-scrollLeft 和 scrollTop 都是可写的属性，通过设置它们来让元素中的内容滚动。
+![](/img/localBlog/1563017856375.jpg)
