@@ -100,6 +100,10 @@ window.addEventListener('popstate', matchAndUpdate)
 
 我们在用 Vue 开发过实际项目的时候都会用到 Vue-Router 这个官方插件来帮我们解决路由的问题。Vue-Router 的能力十分强大，它支持 hash、history、abstract 3 种路由方式，提供了 `<router-link>` 和 `<router-view>` 2 种组件，还提供了简单的路由配置和一系列好用的 API。
 
+我们先来看看它的整体流程：
+
+![](/img/localBlog/v2-6127682635d2b9422fac8bb7ca2ea8bf_r.jpg)
+
 大部分同学已经掌握了路由的基本使用，但使用的过程中也难免会遇到一些坑，那么这一章我们就来深挖 Vue-Router 的实现细节，一旦我们掌握了它的实现原理，那么就能在开发中对路由的使用更加游刃有余。
 
 ### 路由注册
