@@ -1484,7 +1484,20 @@ function resolveQueue (
 
 #### 导航守卫
 
-官方的说法叫导航守卫，实际上就是发生在路由路径切换的时候，执行的一系列钩子函数。
+官方的说法叫导航守卫，实际上就是发生在路由路径切换的时候，执行的一系列钩子函数。可以看一下 Vue-Router 里面对导航的完整解析流程：
+
+- 导航被触发。
+- 在失活的组件里调用离开守卫。
+- 调用全局的 beforeEach 守卫。
+- 在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。
+- 在路由配置里调用 beforeEnter。
+- 解析异步路由组件。
+- 在被激活的组件里调用 beforeRouteEnter。
+- 调用全局的 beforeResolve 守卫 (2.5+)。
+- 导航被确认。
+- 调用全局的 afterEach 钩子。
+- 触发 DOM 更新。
+- 用创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数。
 
 我们先从整体上看一下这些钩子函数执行的逻辑，首先构造一个队列 queue，它实际上是一个数组；然后再定义一个迭代器函数 iterator；最后再执行 runQueue 方法来执行这个队列。我们先来看一下 runQueue 的定义，在 src/util/async.js 中：
 
@@ -2531,3 +2544,406 @@ replace (location: RawLocation, onComplete?: Function, onAbort?: Function) {
 那么至此我们把路由的 transitionTo 的主体过程分析完毕了，其他一些分支比如重定向、别名、滚动行为等同学们可以自行再去分析。
 
 路径变化是路由中最重要的功能，我们要记住以下内容：路由始终会维护当前的线路，路由切换的时候会把当前线路切换到目标线路，切换过程中会执行一系列的导航守卫钩子函数，会更改 url，同样也会渲染对应的组件，切换完毕后会把目标线路更新替换当前线路，这样就会作为下一次的路径切换的依据。
+
+### history 模式
+
+#### HashHistory
+
+首先就看默认的 hash 模式，也应该是用的最多的模式，对应的源码在 src/history/hash.js 中：
+
+```
+
+export class HashHistory extends History {
+  constructor (router: Router, base: ?string, fallback: boolean) {
+    super(router, base)
+    // check history fallback deeplinking
+    if (fallback && checkFallback(this.base)) {
+      return
+    }
+    ensureSlash()
+  }
+
+  // this is delayed until the app mounts
+  // to avoid the hashchange listener being fired too early
+  setupListeners () {
+    const router = this.router
+    const expectScroll = router.options.scrollBehavior
+    const supportsScroll = supportsPushState && expectScroll
+
+    if (supportsScroll) {
+      setupScroll()
+    }
+
+    window.addEventListener(
+      supportsPushState ? 'popstate' : 'hashchange',
+      () => {
+        const current = this.current
+        if (!ensureSlash()) {
+          return
+        }
+        this.transitionTo(getHash(), route => {
+          if (supportsScroll) {
+            handleScroll(this.router, route, current, true)
+          }
+          if (!supportsPushState) {
+            replaceHash(route.fullPath)
+          }
+        })
+      }
+    )
+  }
+
+  push (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+    const { current: fromRoute } = this
+    this.transitionTo(
+      location,
+      route => {
+        pushHash(route.fullPath)
+        handleScroll(this.router, route, fromRoute, false)
+        onComplete && onComplete(route)
+      },
+      onAbort
+    )
+  }
+
+  replace (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+    const { current: fromRoute } = this
+    this.transitionTo(
+      location,
+      route => {
+        replaceHash(route.fullPath)
+        handleScroll(this.router, route, fromRoute, false)
+        onComplete && onComplete(route)
+      },
+      onAbort
+    )
+  }
+
+  go (n: number) {
+    window.history.go(n)
+  }
+
+  ensureURL (push?: boolean) {
+    const current = this.current.fullPath
+    if (getHash() !== current) {
+      push ? pushHash(current) : replaceHash(current)
+    }
+  }
+
+  getCurrentLocation () {
+    return getHash()
+  }
+}
+
+function checkFallback (base) {
+  const location = getLocation(base)
+  if (!/^\/#/.test(location)) {
+    window.location.replace(cleanPath(base + '/#' + location))
+    return true
+  }
+}
+
+function ensureSlash (): boolean {
+  const path = getHash()
+  if (path.charAt(0) === '/') {
+    return true
+  }
+  replaceHash('/' + path)
+  return false
+}
+
+export function getHash (): string {
+  // We can't use window.location.hash here because it's not
+  // consistent across browsers - Firefox will pre-decode it!
+  let href = window.location.href
+  const index = href.indexOf('#')
+  // empty path
+  if (index < 0) return ''
+
+  href = href.slice(index + 1)
+  // decode the hash but not the search or hash
+  // as search(query) is already decoded
+  // https://github.com/vuejs/vue-router/issues/2708
+  const searchIndex = href.indexOf('?')
+  if (searchIndex < 0) {
+    const hashIndex = href.indexOf('#')
+    if (hashIndex > -1) {
+      href = decodeURI(href.slice(0, hashIndex)) + href.slice(hashIndex)
+    } else href = decodeURI(href)
+  } else {
+    if (searchIndex > -1) {
+      href = decodeURI(href.slice(0, searchIndex)) + href.slice(searchIndex)
+    }
+  }
+
+  return href
+}
+
+function getUrl (path) {
+  const href = window.location.href
+  const i = href.indexOf('#')
+  const base = i >= 0 ? href.slice(0, i) : href
+  return `${base}#${path}`
+}
+
+function pushHash (path) {
+  if (supportsPushState) {
+    pushState(getUrl(path))
+  } else {
+    window.location.hash = path
+  }
+}
+
+function replaceHash (path) {
+  if (supportsPushState) {
+    replaceState(getUrl(path))
+  } else {
+    window.location.replace(getUrl(path))
+  }
+}
+```
+
+可以看到在实例化过程中主要做两件事情：针对于不支持 history api 的降级处理，以及保证默认进入的时候对应的 hash 值是以 / 开头的，如果不是则替换。
+
+值得注意的是这里实例化中并没有监听 hashchange 事件来响应对应的逻辑，这部分逻辑在上篇的 router.init 中包含的，主要是为了解决 beforeEnter fire twice on root path ('/') after async next call ，在对应的回调中则监听了 popstate / onHashChange 方法。
+
+```
+    window.addEventListener(
+      supportsPushState ? 'popstate' : 'hashchange',
+      () => {
+        const current = this.current
+        if (!ensureSlash()) {
+          return
+        }
+        this.transitionTo(getHash(), route => {
+          if (supportsScroll) {
+            handleScroll(this.router, route, current, true)
+          }
+          if (!supportsPushState) {
+            replaceHash(route.fullPath)
+          }
+        })
+      }
+    )
+```
+
+对于 HashHistory 来说，我们来看看调用 transitionTo 后的回调：
+
+```
+function pushHash (path) {
+  if (supportsPushState) {
+    pushState(getUrl(path))
+  } else {
+    window.location.hash = path
+  }
+}
+
+function replaceHash (path) {
+  if (supportsPushState) {
+    replaceState(getUrl(path))
+  } else {
+    window.location.replace(getUrl(path))
+  }
+}
+
+```
+
+可以看到在支持 pushState 的情况下会调用 pushState、replaceState，而不支持时则会回退到直接修改 hash。
+
+```
+export function pushState (url?: string, replace?: boolean) {
+  saveScrollPosition()
+  // try...catch the pushState call to get around Safari
+  // DOM Exception 18 where it limits to 100 pushState calls
+  const history = window.history
+  try {
+    if (replace) {
+      history.replaceState({ key: _key }, '', url)
+    } else {
+      _key = genKey()
+      history.pushState({ key: _key }, '', url)
+    }
+  } catch (e) {
+    window.location[replace ? 'replace' : 'assign'](url)
+  }
+}
+
+export function replaceState (url?: string) {
+  pushState(url, true)
+}
+```
+
+#### HTML5History
+
+HTML5History 则是利用 history.pushState/repaceState API 来完成 URL 跳转而无须重新加载页面，页面地址和正常地址无异；源码在 src/history/html5.js 中：
+
+```
+
+export class HTML5History extends History {
+  constructor (router: Router, base: ?string) {
+    super(router, base)
+
+    const expectScroll = router.options.scrollBehavior
+    const supportsScroll = supportsPushState && expectScroll
+
+    if (supportsScroll) {
+      setupScroll()
+    }
+
+    const initLocation = getLocation(this.base)
+    window.addEventListener('popstate', e => {
+      const current = this.current
+
+      // Avoiding first `popstate` event dispatched in some browsers but first
+      // history route not updated since async guard at the same time.
+      const location = getLocation(this.base)
+      if (this.current === START && location === initLocation) {
+        return
+      }
+
+      this.transitionTo(location, route => {
+        if (supportsScroll) {
+          handleScroll(router, route, current, true)
+        }
+      })
+    })
+  }
+
+  go (n: number) {
+    window.history.go(n)
+  }
+
+  push (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+    const { current: fromRoute } = this
+    this.transitionTo(location, route => {
+      pushState(cleanPath(this.base + route.fullPath))
+      handleScroll(this.router, route, fromRoute, false)
+      onComplete && onComplete(route)
+    }, onAbort)
+  }
+
+  replace (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+    const { current: fromRoute } = this
+    this.transitionTo(location, route => {
+      replaceState(cleanPath(this.base + route.fullPath))
+      handleScroll(this.router, route, fromRoute, false)
+      onComplete && onComplete(route)
+    }, onAbort)
+  }
+
+  ensureURL (push?: boolean) {
+    if (getLocation(this.base) !== this.current.fullPath) {
+      const current = cleanPath(this.base + this.current.fullPath)
+      push ? pushState(current) : replaceState(current)
+    }
+  }
+
+  getCurrentLocation (): string {
+    return getLocation(this.base)
+  }
+}
+
+export function getLocation (base: string): string {
+  let path = decodeURI(window.location.pathname)
+  if (base && path.indexOf(base) === 0) {
+    path = path.slice(base.length)
+  }
+  return (path || '/') + window.location.search + window.location.hash
+}
+```
+
+这样可以看出和 HashHistory 中不同的是这里增加了滚动位置特性以及当历史发生变化时改变浏览器地址的行为是不一样的，这里使用了新的 history api 来更新。
+
+在这种模式下，初始化作的工作相比 hash 模式少了很多，只是调用基类构造函数以及初始化监听事件，不需要再做额外的工作。
+
+可以看到这里是监听的 popstate：
+
+```
+    window.addEventListener('popstate', e => {
+      const current = this.current
+
+      // Avoiding first `popstate` event dispatched in some browsers but first
+      // history route not updated since async guard at the same time.
+      const location = getLocation(this.base)
+      if (this.current === START && location === initLocation) {
+        return
+      }
+
+      this.transitionTo(location, route => {
+        if (supportsScroll) {
+          handleScroll(router, route, current, true)
+        }
+      })
+    })
+```
+
+#### AbstractHistory
+
+理论上来说这种模式是用于 Node.js 环境的，一般场景也就是在做测试的时候。但是在实际项目中其实还可以使用的，利用这种特性还是可以很方便的做很多事情的。由于它和浏览器无关，所以代码上来说也是最简单的，在 src/history/abstract.js 中：
+
+```
+export class AbstractHistory extends History {
+  index: number
+  stack: Array<Route>
+
+  constructor (router: Router, base: ?string) {
+    super(router, base)
+    this.stack = []
+    this.index = -1
+  }
+
+  push (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+    this.transitionTo(
+      location,
+      route => {
+        this.stack = this.stack.slice(0, this.index + 1).concat(route)
+        this.index++
+        onComplete && onComplete(route)
+      },
+      onAbort
+    )
+  }
+
+  replace (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+    this.transitionTo(
+      location,
+      route => {
+        this.stack = this.stack.slice(0, this.index).concat(route)
+        onComplete && onComplete(route)
+      },
+      onAbort
+    )
+  }
+
+  go (n: number) {
+    const targetIndex = this.index + n
+    if (targetIndex < 0 || targetIndex >= this.stack.length) {
+      return
+    }
+    const route = this.stack[targetIndex]
+    this.confirmTransition(
+      route,
+      () => {
+        this.index = targetIndex
+        this.updateRoute(route)
+      },
+      err => {
+        if (isExtendedError(NavigationDuplicated, err)) {
+          this.index = targetIndex
+        }
+      }
+    )
+  }
+
+  getCurrentLocation () {
+    const current = this.stack[this.stack.length - 1]
+    return current ? current.fullPath : '/'
+  }
+
+  ensureURL () {
+    // noop
+  }
+}
+```
+
+可以看出在抽象模式下，所做的仅仅是用一个数组当做栈来模拟浏览器历史记录，拿一个变量来标示当前处于哪个位置。
