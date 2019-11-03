@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="example">
+  <div>{{key7}}</div>
+  <!-- <div>{{testA}}</div>
+  <div>{{testB}}</div>
+  <div>{{testC}}</div>
+  <div>{{testD}}</div> -->
+</div>
+<script>
+  // 我们的数据对象
+  var data = {
+    key1: {
+      key2: 2,
+      key3: {
+        key4: 4,
+        key5: [5],
+      },
+      key6: [6]
+    },
+    key7: [7, {
+      key8: 8
+    }],
+    key9: 9
+  }
+  
+  // 该对象被加入到一个 Vue 实例中
+  var vm = new Vue({
+    el: '#example',
+    data: data,
+    watch: {
+      key7: function() {
+        console.log('key7change')
+      }
+    },
+    computed: {
+      testA() {
+        console.log('changeA')
+        return this.key1.key3.key5;
+      },
+      testB() {
+        console.log('changeB')
+        this.key7.forEach(o => o.key8)
+        return this.key7;
+      },
+      testC() {
+        console.log('changeC')
+        return this.key7.map(o => o.key8);
+      },
+      testD() {
+        console.log('changeD')
+        return JSON.stringify(this.key7);
+      },
+    }
+  })
+
+document.documentElement.addEventListener("click", function(){
+  // vm.$set(vm.key7[1], "newkey", "newval")
+  vm.key7[1].key8 += 1;
+});
+
+
+  </script>
+</body>
+</html>
