@@ -1,3 +1,6 @@
 {
-  "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true,
+  "files.associations": {
+    "iostream": "cpp"
+  }
 }
