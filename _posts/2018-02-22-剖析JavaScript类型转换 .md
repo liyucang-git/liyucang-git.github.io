@@ -58,13 +58,13 @@ undefined==null
 
 首先在进行比较之前由于 ! 的优先级高于 ==，所以会先对 ![]求值，这里我们了解一下常见运算符的优先级：
 
-![](http://cdn.vivigo.xyz/blog/1552642292601_7741.jpeg)
+![](/img/localBlog/1552642292601_7741.jpeg)
 
 ### toBoolean
 
 !称为逻辑非运算符，会先对目标值进行布尔类型转化（toBoolean），至于怎么转我们看下图：
 
-![](http://cdn.vivigo.xyz/blog/1552642292934_1357.png)
+![](/img/localBlog/1552642292934_1357.png)
 
 []是一个对象,所以对应转换成 Boolean 对象的值为 true;那么![]对应的 Boolean 值就是 false。
 
@@ -72,7 +72,7 @@ undefined==null
 
 根据我们整理的规范条件 1，`==`运算符会将`true`转化（toNumber）为 1。我们平时使用 + 或者 Number 函数来进行数字转化就是根据 toNumber 规则，具体转化规则如下：
 
-![](http://cdn.vivigo.xyz/blog/1552642293375_788.png)
+![](/img/localBlog/1552642293375_788.png)
 
 注意表格中的 String 转化 Number 时，对字符串有严格要求，像：'3f'、'7.3.4'等不符合规范的值都会转化为 NaN。
 
@@ -84,7 +84,7 @@ undefined==null
 
 再来看看 ECMAScript 标准怎么定义 toPrimitive 方法的:
 
-![](http://cdn.vivigo.xyz/blog/1552642294227_1782.png)
+![](/img/localBlog/1552642294227_1782.png)
 
 是不是看了这个定义,还是一脸懵逼,toPrimitive 这尼玛什么玩意啊?这不是等于没说吗?别慌，经过翻阅资料，上面要说的可以概括成:
 
@@ -120,7 +120,7 @@ JavaScript 调用 valueOf 方法将对象转换为原始值。你很少需要自
 
 JavaScript 的许多内置对象都重写了该函数，以实现更适合自身的功能需要。因此，不同类型对象的 valueOf()方法的返回值和返回值类型均可能不同，具体见下图：
 
-![](http://cdn.vivigo.xyz/blog/1552642295073_5002.jpg)
+![](/img/localBlog/1552642295073_5002.jpg)
 
 ```
 // Array：返回数组对象本身
@@ -339,7 +339,7 @@ var x = {
 
 好了，说了那么多我们来总结一下：
 
-![](http://cdn.vivigo.xyz/blog/1552642295348_7237.jpg)
+![](/img/localBlog/1552642295348_7237.jpg)
 
 根据我们得到的最终的图，我们总结一下==运算的规则：
 

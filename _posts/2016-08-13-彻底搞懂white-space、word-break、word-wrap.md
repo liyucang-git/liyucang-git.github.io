@@ -11,7 +11,7 @@ tags:
 
 # 彻底搞懂 white-space、word-break、word-wrap
 
-今天我们来将一下 css 中三个让人迷惑而傻傻分不清的属性，在平时我们可能有用到过这些属性，但我们真的有把它们弄懂吗？今天我来带大家把这三个属性彻底搞清楚！
+今天我们来讲一下 css 中三个让人迷惑而傻傻分不清的属性，在平时我们可能有用到过这些属性，但我们真的有把它们弄懂吗？今天我来带大家把这三个属性彻底搞清楚！
 
 本篇文章使用的测试代码如下：
 
@@ -32,7 +32,7 @@ tags:
 
 在不加任何样式时效果如下；
 
-![](http://cdn.vivigo.xyz/blog/1552642279449_7805.png)
+![](/img/localBlog/1552642279449_7805.png)
 
 可以看到，nbsp;和`</br>`可以正常发挥作用，而连续的空格会被缩减成一个（比如 This 和 is 之间的三个空格变成了一个），换行符也全都无效。句子超过一行后会自动换行，而长度超过一行的单个单词会超出边界。接下来我们看下， 给它上面三个 css 属性赋值后会出现什么变化。
 
@@ -44,31 +44,31 @@ tags:
 
 先看下 white-space:nowrap 时的情况：
 
-![](http://cdn.vivigo.xyz/blog/1552642279606_1457.png)
+![](/img/localBlog/1552642279606_1457.png)
 
 不仅空格被合并，换行符无效，连原本的自动换行都没了！只有`</br>`才能导致换行！所以这个值的表现还是挺简单的，我们可以理解为永不换行。
 
 ### white-space:pre
 
-![](http://cdn.vivigo.xyz/blog/1552642279665_8884.png)
+![](/img/localBlog/1552642279665_8884.png)
 
 空格和换行符全都被保留了下来！不过自动换行还是没了。保留，所以 pre 其实是 preserve 的缩写，这样就好记了。
 
 ### white-space:pre-wrap
 
-![](http://cdn.vivigo.xyz/blog/1552642285456_5633.png)
+![](/img/localBlog/1552642285456_5633.png)
 
 显然 pre-wrap 就是 preserve+wrap，保留空格和换行符，且可以自动换行。
 
 ### white-space:pre-line
 
-![](http://cdn.vivigo.xyz/blog/1552642285919_8959.png)
+![](/img/localBlog/1552642285919_8959.png)
 
 空格被合并了，但是换行符可以发挥作用,自动换行还在，所以 pre-line 其实是 preserve+wrap+空格合并。
 
 整理一下这几个属性：
 
-![](http://cdn.vivigo.xyz/blog/1552642286075_2559.png)
+![](/img/localBlog/1552642286075_2559.png)
 
 ## word-break
 
@@ -76,13 +76,13 @@ tags:
 
 ### word-break:keep-all
 
-![](http://cdn.vivigo.xyz/blog/1552642286283_3055.png)
+![](/img/localBlog/1552642286283_3055.png)
 
 所有“单词”一律不拆分换行，注意，我这里的“单词”包括连续的中文字符（还有日文、韩文等），或者可以理解为只有空格可以触发自动换行
 
 ### word-break:break-all
 
-![](http://cdn.vivigo.xyz/blog/1552642286393_3832.png)
+![](/img/localBlog/1552642286393_3832.png)
 
 所有单词碰到边界一律拆分换行，不管你是 incomprehensibilities 这样一行都显示不下的单词，还是 long 这样很短的单词，只要碰到边界，都会被强制拆分换行。所以用 word-break:break-all 时要慎重呀。
 
@@ -96,7 +96,7 @@ word-wrap 又叫做 overflow-wrap：
 
 这个属性也是控制单词如何被拆分换行的，实际上是作为 word-break 的互补，它只有两个值：normal、break-word，那我们看下 break-word：
 
-![](http://cdn.vivigo.xyz/blog/1552642286531_1677.png)
+![](/img/localBlog/1552642286531_1677.png)
 
 终于达到了上文我们希望的效果，只有当一个单词一整行都显示不下时，才会拆分换行该单词。所以我觉得 overflow-wrap 更好理解好记一些，overflow，只有长到溢出的单词才会被强制拆分换行！（其实前面的 word-break 属性除了列出的那三个值外，也有个 break-word 值，效果跟这里的 word-wrap:break-word 一样，然而只有 Chrome、Safari 等部分浏览器支持）
 
