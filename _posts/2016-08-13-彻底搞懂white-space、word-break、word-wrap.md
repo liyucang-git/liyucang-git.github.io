@@ -86,19 +86,17 @@ tags:
 
 所有单词碰到边界一律拆分换行，不管你是 incomprehensibilities 这样一行都显示不下的单词，还是 long 这样很短的单词，只要碰到边界，都会被强制拆分换行。所以用 word-break:break-all 时要慎重呀。
 
-这样的效果好像并不太好呀，能不能就把 incomprehensibilities 拆一下，其它的单词不拆呢？那就需要下面这个属性了：
+这样的效果好像并不太好呀，能不能就把 incomprehensibilities 拆一下，其它的单词不拆呢？那就需要下面这个属性了。
 
 ## word-wrap（overflow-wrap）
 
-word-wrap 又叫做 overflow-wrap：
-
-> word-wrap 属性原本属于微软的一个私有属性，在 CSS3 现在的文本规范草案中已经被重名为 overflow-wrap 。 word-wrap 现在被当作 overflow-wrap 的 “别名”。 稳定的谷歌 Chrome 和 Opera 浏览器版本支持这种新语法。
+word-wrap 属性原本属于微软的一个私有属性，在 CSS3 现在的文本规范草案中已经被重名为 overflow-wrap。 word-wrap 现在被当作 overflow-wrap 的 “别名”。 稳定的谷歌 Chrome 和 Opera 浏览器版本支持这种新语法。
 
 这个属性也是控制单词如何被拆分换行的，实际上是作为 word-break 的互补，它只有两个值：normal、break-word，那我们看下 break-word：
 
 ![](/img/localBlog/1552642286531_1677.png)
 
-终于达到了上文我们希望的效果，只有当一个单词一整行都显示不下时，才会拆分换行该单词。所以我觉得 overflow-wrap 更好理解好记一些，overflow，只有长到溢出的单词才会被强制拆分换行！（其实前面的 word-break 属性除了列出的那三个值外，也有个 break-word 值，效果跟这里的 word-wrap:break-word 一样，然而只有 Chrome、Safari 等部分浏览器支持）
+终于达到了上文我们希望的效果，只有当一个单词一整行都显示不下时，才会拆分换行该单词。所以我觉得 overflow-wrap 更好理解好记一些，overflow，只有长到溢出的单词才会被强制拆分换行！（其实前面的 word-break 属性除了列出的那三个值外，也有个 break-word 值，效果跟这里的 word-wrap:break-word 一样，然而只有 Chrome、Safari 等部分浏览器支持）。
 
 ## 总结
 

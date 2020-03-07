@@ -61,4 +61,4 @@ so:
 
 - 如果你需要编码整个 URL，然后需要使用这个 URL，那么用 encodeURI。
 
-- 当你需要编码 URL 中的参数的时候，那么 encodeURvIComponent 是最好方法。
+- 当你需要编码 URL 中的参数的时候，那么 encodeURIComponent 是最好方法。
