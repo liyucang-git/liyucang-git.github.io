@@ -30,7 +30,7 @@ undefined==null
 //true
 ```
 
-看了这些比较结果是不是一脸懵逼呢，不要慌，接着往下看。我们就从[] == []和[] == ![]例子切入分析一下为什么输出的结果是 true 而不是其它的呢?
+看了这些比较结果是不是一脸懵逼呢，不要慌，接着往下看。我们就从 `[] == ![]` 例子切入分析一下为什么输出的结果是 true。
 
 ## ECMAScript 规范里面的==
 
@@ -80,7 +80,7 @@ undefined==null
 
 ### toPrimitive
 
-在此处因为 [] 是对象，0 是数字 Number，根据我们整理的规范 3 返回比较 toPrimitive([]) == 0 的结果。
+在此处因为 [] 是对象，0 是数字 Number，根据我们整理的规范 3 返回比较 `toPrimitive([]) == 0` 的结果。
 
 再来看看 ECMAScript 标准怎么定义 toPrimitive 方法的:
 
@@ -110,7 +110,7 @@ preferredType为希望转换成的类型（默认为空，接受的值为Number�
 4. 否则抛异常。
 ```
 
-首先我们要明白 obj.valueOf()和 obj.toString()还有原始值分别是什么意思,这是弄懂上面描述的前提之一。
+首先我们要明白 `obj.valueOf()`和 `obj.toString()`还有原始值分别是什么意思,这是弄懂上面描述的前提之一。
 
 ### valueOf
 
