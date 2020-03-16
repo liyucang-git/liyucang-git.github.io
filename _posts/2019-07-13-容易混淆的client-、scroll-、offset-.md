@@ -22,7 +22,7 @@ tags:
 | offsetLeft   | clientLeft   | scrollLeft   |
 | offsetTop    | clientTop    | scrollTop    |
 
-这些属性和元素的高度、滚动、位置有关，单凭单词很难搞清楚分别代表什么意思之间有什么区别。
+这些属性和元素的高度、滚动、位置有关，单凭单词很难搞清楚分别代表什么意思、之间有什么区别。
 
 ## offset
 
