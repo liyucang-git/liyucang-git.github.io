@@ -60,14 +60,14 @@ http://hometown.xxx.edu.cn/bbs/forum.php
 
 但真正让这项技术发扬光大的，(｡･∀･)ﾉﾞ还是后来的 Google Map，它的出现向人们展现了 Ajax 的真正魅力，释放了众多开发人员的想象力，让其不仅仅局限于简单的数据和页面交互，为后来异步交互体验方式的繁荣发展带来了根基。
 
-而异步交互体验的更高级版本就是我们熟知的 SPA，SPA 不单单在页面交互上做到了不刷新，而且在页面之间跳转也做到了不刷新，为了做到这一点，就促使了前端路由的诞生。
+而**异步交互体验的更高级版本就是我们熟知的 SPA，SPA 不单单在页面交互上做到了不刷新，而且在页面之间跳转也做到了不刷新**，为了做到这一点，就促使了前端路由的诞生。
 
 ### 前端路由的实现方式
 
-前端路由其实只要解决两个问题：
+**前端路由其实只要解决两个问题：**
 
-- 在页面不刷新的前提下实现 url 变化
-- 捕捉到 url 的变化，以便执行页面替换逻辑
+- **在页面不刷新的前提下实现 url 变化**
+- **捕捉到 url 的变化，以便执行页面替换逻辑**
 
 在 2014 年之前，大家是通过 hash 来实现路由，url hash 就是类似于：
 
@@ -75,7 +75,7 @@ http://hometown.xxx.edu.cn/bbs/forum.php
 http://www.xxx.com/#/login
 ```
 
-这种 #。后面 hash 值的变化，并不会导致浏览器向服务器发出请求，浏览器不发出请求，也就不会刷新页面。另外每次 hash 值的变化，还会触发 hashchange 这个事件，通过这个事件我们就可以知道 hash 值发生了哪些变化。然后我们便可以监听 hashchange 来实现更新页面部分内容的操作：
+这种 **#。后面 hash 值的变化，并不会导致浏览器向服务器发出请求，浏览器不发出请求，也就不会刷新页面。另外每次 hash 值的变化，还会触发 hashchange 这个事件**，通过这个事件我们就可以知道 hash 值发生了哪些变化。然后我们便可以**监听 hashchange 来实现更新页面部分内容的操作**：
 
 ```
 function matchAndUpdate () {
@@ -85,7 +85,7 @@ function matchAndUpdate () {
 window.addEventListener('hashchange', matchAndUpdate)
 ```
 
-后来，因为 HTML5 标准发布。多了两个 API，pushState 和 replaceState，通过这两个 API 可以改变 url 地址且不会发送请求。同时还有 popstate 事件。
+后来，因为 HTML5 标准发布。多了两个 API，**pushState 和 replaceState，通过这两个 API 可以改变 url 地址且不会发送请求**。同时还有 **popstate 事件**。
 
 通过这些就能用另一种方式来实现前端路由了，但原理都是跟 hash 实现相同的。用了 HTML5 的实现，单页路由的 url 就不会多出一个#，变得更加美观。但因为没有 # 号，所以当用户刷新页面之类的操作时，浏览器还是会给服务器发送请求。为了避免出现这种情况，所以这个实现需要服务器的支持，需要把所有路由都重定向到根页面：
 
@@ -200,7 +200,7 @@ export function install (Vue) {
 
 当用户执行 Vue.use(VueRouter) 的时候，实际上就是在执行 install 函数，为了确保 install 逻辑只执行一次，用了 install.installed 变量做已安装的标志位。另外用一个全局的 `_Vue` 来接收参数 Vue，因为作为 Vue 的插件对 Vue 对象是有依赖的，但又不能去单独去 import Vue，因为那样会增加包体积，所以就通过这种方式拿到 Vue 对象。
 
-Vue-Router 安装最重要的一步就是利用 Vue.mixin 去把 beforeCreate 和 destroyed 钩子函数注入到每一个组件中。Vue.mixin 的定义，在 vue/src/core/global-api/mixin.js 中：
+Vue-Router 安装最重要的一步就是**利用 Vue.mixin 去把 beforeCreate 和 destroyed 钩子函数注入到每一个组件中**。Vue.mixin 的定义，在 vue/src/core/global-api/mixin.js 中：
 
 ```
 export function initMixin (Vue: GlobalAPI) {
@@ -499,7 +499,7 @@ constructor (options: RouterOptions = {}) {
   }
 ```
 
-构造函数定义了一些属性，其中 this.app 表示根 Vue 实例，this.apps 保存持有 `$options.router` 属性的 Vue 实例，this.options 保存传入的路由配置，this.beforeHooks、 this.resolveHooks、this.afterHooks 表示一些钩子函数，我们之后会介绍，this.matcher 表示路由匹配器，我们之后会介绍，this.fallback 表示在浏览器不支持 history.pushState 的情况下，根据传入的 fallback 配置参数，决定是否回退到 hash 模式，this.mode 表示路由创建的模式，this.history 表示路由历史的具体的实现实例，它是根据 this.mode 的不同实现不同，它有 History 基类，然后不同的 history 实现都是继承 History。
+构造函数定义了一些属性，其中 this.app 表示根 Vue 实例，this.apps 保存持有 `$options.router` 属性的 Vue 实例，this.options 保存传入的路由配置，this.beforeHooks、 this.resolveHooks、this.afterHooks 表示一些钩子函数，我们之后会介绍，this.matcher 表示路由匹配器，我们之后会介绍，this.fallback 表示在浏览器不支持 history.pushState 的情况下，根据传入的 fallback 配置参数，决定是否回退到 hash 模式，this.mode 表示路由创建的模式，**this.history 表示路由历史的具体的实现实例，它是根据 this.mode 的不同实现不同，它有 History 基类，然后不同的 history 实现都是继承 History**。
 
 实例化 VueRouter 后会返回它的实例 router，我们在 new Vue 的时候会把 router 作为配置的属性传入，回顾一下上一节我们讲 beforeCreate 混入的时候有这么一段代码：
 
@@ -592,7 +592,7 @@ match (
 
 **总结**
 
-通过这一节的分析，我们大致对 VueRouter 类有了大致了解，知道了它的一些属性和方法，同时了解到在组件的初始化阶段，执行到 beforeCreate 钩子函数的时候会执行 router.init 方法，然后又会执行 history.transitionTo 方法做路由过渡，进而引出了 matcher 的概念，接下来我们先研究一下 matcher 的相关实现。
+通过这一节的分析，我们大致对 VueRouter 类有了大致了解，知道了它的一些属性和方法，同时了解到在**组件的初始化阶段，执行到 beforeCreate 钩子函数的时候会执行 router.init 方法，然后又会执行 history.transitionTo 方法做路由过渡**，进而引出了 matcher 的概念，接下来我们先研究一下 matcher 的相关实现。
 
 ### matcher
 
@@ -859,7 +859,7 @@ export function createRouteMap (
 }
 ```
 
-createRouteMap 函数的目标是把用户的路由配置转换成一张路由映射表，它包含 3 个部分，pathList 存储所有的 path，pathMap 表示一个 path 到 RouteRecord 的映射关系，而 nameMap 表示 name 到 RouteRecord 的映射关系。那么 RouteRecord 到底是什么，先来看一下它的数据结构：
+**createRouteMap 函数的目标是把用户的路由配置转换成一张路由映射表，它包含 3 个部分，pathList 存储所有的 path，pathMap 表示一个 path 到 RouteRecord 的映射关系，而 nameMap 表示 name 到 RouteRecord 的映射关系**。那么 RouteRecord 到底是什么，先来看一下它的数据结构：
 
 ```
 declare type RouteRecord = {
@@ -1071,7 +1071,7 @@ if (name) {
 
 如果我们在路由配置中配置了 name，则给 nameMap 添加一条记录。
 
-由于 pathList、pathMap、nameMap 都是引用类型，所以在遍历整个 routes 过程中去执行 addRouteRecord 方法，会不断给他们添加数据。那么经过整个 createRouteMap 方法的执行，我们得到的就是 pathList、pathMap 和 nameMap。其中 pathList 是为了记录路由配置中的所有 path，而 pathMap 和 nameMap 都是为了通过 path 和 name 能快速查到对应的 RouteRecord。
+由于 pathList、pathMap、nameMap 都是引用类型，所以在遍历整个 routes 过程中去执行 addRouteRecord 方法，会不断给他们添加数据。那么经过整个 createRouteMap 方法的执行，我们得到的就是 pathList、pathMap 和 nameMap。其中 **pathList 是为了记录路由配置中的所有 path，而 pathMap 和 nameMap 都是为了通过 path 和 name 能快速查到对应的 RouteRecord**。
 
 再回到 createMatcher 函数，接下来就定义了一系列方法，最后返回了一个对象。
 
@@ -1218,7 +1218,7 @@ normalizeLocation 方法的作用是根据 raw，current 计算出新的 locatio
 
 **path**
 
-通过 name 我们可以很快的找到 record，但是通过 path 并不能，因为我们计算后的 location.path 是一个真实路径，而 record 中的 path 可能会有 param，因此需要对所有的 pathList 做顺序遍历， 然后通过 matchRoute 方法根据 record.regex、location.path、location.params 匹配，如果匹配到则也通过 `_createRoute(record, location, redirectedFrom)`去生成一条新路径。因为是顺序遍历，所以我们书写路由配置要注意路径的顺序，因为写在前面的会优先尝试匹配。
+**通过 name 我们可以很快的找到 record，但是通过 path 并不能，因为我们计算后的 location.path 是一个真实路径，而 record 中的 path 可能会有 param，因此需要对所有的 pathList 做顺序遍历**， 然后通过 matchRoute 方法根据 record.regex、location.path、location.params 匹配，如果匹配到则也通过 `_createRoute(record, location, redirectedFrom)`去生成一条新路径。**因为是顺序遍历，所以我们书写路由配置要注意路径的顺序，因为写在前面的会优先尝试匹配**。
 
 最后我们来看一下 `_createRoute` 的实现：
 
@@ -1482,7 +1482,7 @@ function resolveQueue (
 }
 ```
 
-因为 route.matched 是一个 RouteRecord 的数组，由于路径是由 current 变向 route，那么就遍历对比 2 边的 RouteRecord，找到一个不一样的位置 i，那么 next 中从 0 到 i 的 RouteRecord 是两边都一样，则为 updated 的部分；从 i 到最后的 RouteRecord 是 next 独有的，为 activated 的部分；而 current 中从 i 到最后的 RouteRecord 则没有了，为 deactivated 的部分。
+因为 **route.matched 是一个 RouteRecord 的数组，由于路径是由 current 变向 route，那么就遍历对比 2 边的 RouteRecord，找到一个不一样的位置 i，那么 next 中从 0 到 i 的 RouteRecord 是两边都一样，则为 updated 的部分；从 i 到最后的 RouteRecord 是 next 独有的，为 activated 的部分；而 current 中从 i 到最后的 RouteRecord 则没有了，为 deactivated 的部分**。
 
 拿到 updated、activated、deactivated 3 个 ReouteRecord 数组后，接下来就是路径变换后的一个重要部分，执行一系列的钩子函数。
 
@@ -1861,7 +1861,7 @@ function poll (
 }
 ```
 
-extractEnterGuards 函数的实现也是利用了 extractGuards 方法提取组件中的 beforeRouteEnter 导航钩子函数，和之前不同的是 bind 方法的不同。文档中特意强调了 beforeRouteEnter 钩子函数中是拿不到组件实例的，因为当守卫执行前，组件实例还没被创建，但是我们可以通过传一个回调给 next 来访问组件实例。在导航被确认的时候执行回调，并且把组件实例作为回调方法的参数：
+extractEnterGuards 函数的实现也是利用了 extractGuards 方法提取组件中的 beforeRouteEnter 导航钩子函数，和之前不同的是 bind 方法的不同。文档中特意强调了 **beforeRouteEnter 钩子函数中是拿不到组件实例的，因为当守卫执行前，组件实例还没被创建，但是我们可以通过传一个回调给 next 来访问组件实例。在导航被确认的时候执行回调，并且把组件实例作为回调方法的参数**：
 
 ```
 beforeRouteEnter (to, from, next) {
@@ -2520,11 +2520,11 @@ function guardEvent (e) {
 }
 
 const on = { click: guardEvent }
-  if (Array.isArray(this.event)) {
-    this.event.forEach(e => { on[e] = handler })
-  } else {
-    on[this.event] = handler
-  }
+if (Array.isArray(this.event)) {
+  this.event.forEach(e => { on[e] = handler })
+} else {
+  on[this.event] = handler
+}
 ```
 
 最终会监听点击事件或者其它可以通过 prop 传入的事件类型，执行 hanlder 函数，最终执行 router.push 或者 router.replace 函数，它们的定义在 src/index.js 中：
@@ -2547,7 +2547,7 @@ replace (location: RawLocation, onComplete?: Function, onAbort?: Function) {
 
 那么至此我们把路由的 transitionTo 的主体过程分析完毕了，其他一些分支比如重定向、别名、滚动行为等同学们可以自行再去分析。
 
-路径变化是路由中最重要的功能，我们要记住以下内容：路由始终会维护当前的线路，路由切换的时候会把当前线路切换到目标线路，切换过程中会执行一系列的导航守卫钩子函数，会更改 url，同样也会渲染对应的组件，切换完毕后会把目标线路更新替换当前线路，这样就会作为下一次的路径切换的依据。
+路径变化是路由中最重要的功能，我们要记住以下内容：**路由始终会维护当前的线路，路由切换的时候会把当前线路切换到目标线路，切换过程中会执行一系列的导航守卫钩子函数，会更改 url，同样也会渲染对应的组件，切换完毕后会把目标线路更新替换当前线路，这样就会作为下一次的路径切换的依据**。
 
 ### history 模式
 
@@ -2707,7 +2707,7 @@ function replaceHash (path) {
 }
 ```
 
-可以看到在实例化过程中主要做两件事情：针对于不支持 history api 的降级处理，以及保证默认进入的时候对应的 hash 值是以 / 开头的，如果不是则替换。
+可以看到在实例化过程中主要做两件事情：**针对于不支持 history api 的降级处理，以及保证默认进入的时候对应的 hash 值是以 / 开头的，如果不是则替换**。
 
 值得注意的是这里实例化中并没有监听 hashchange 事件来响应对应的逻辑，这部分逻辑在上篇的 router.init 中包含的，主要是为了解决 beforeEnter fire twice on root path ('/') after async next call ，在对应的回调中则监听了 popstate / onHashChange 方法。
 
@@ -2752,7 +2752,7 @@ function replaceHash (path) {
 
 ```
 
-可以看到在支持 pushState 的情况下会调用 pushState、replaceState，而不支持时则会回退到直接修改 hash。
+可以看到**在支持 pushState 的情况下会调用 pushState、replaceState，而不支持时则会回退到直接修改 hash**。
 
 ```
 export function pushState (url?: string, replace?: boolean) {
