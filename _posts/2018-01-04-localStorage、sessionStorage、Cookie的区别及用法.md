@@ -69,7 +69,7 @@ document.cookie
 
 - Domain – 域。**指定关联的 WEB 服务器或域。一个页面可以为本域和任何父域设置 cookie，只要是父域不是公共后缀(public suffix)即可**。值是域名，比如 `zdnet.com`。这是对 path 路径属性的一个延伸。如果我们想让 `catalog.mycompany.com` 能够访问 `shoppingcart.mycompany.com` 设置的 cookies，该怎么办? 我们可以把 domain 属性设置成`mycompany.com`，并把 path 属性设置成“/”。**不能把 cookies 域属性设置成与设置它的服务器的所在域不同的值**。
 
-- Secure – 安全。指定 cookie 的值通过网络如何在用户和 WEB 服务器之间传递。这个属性的值或者是“secure”，或者为空。缺省情况下，该属性为空，也就是使用不安全的 HTTP 连接传递数据。如果一个 cookie 标记为 secure，那么，它与 WEB 服务器之间就通过 HTTPS 或者其它安全协议传递数据。不过，设置了 secure 属性不代表其他人不能看到你机器本 地保存的 cookie。换句话说，把 cookie 设置为 secure，只保证 cookie 与 WEB 服务器之间的数据传输过程加密，而保存在本地的 cookie 文件并不加密。如果想让本地 cookie 也加密，得自己加密数据。
+- Secure – 安全。指定 cookie 的值通过网络如何在用户和 WEB 服务器之间传递。这个属性的值或者是“secure”，或者为空。缺省情况下，该属性为空，也就是使用不安全的 HTTP 连接传递数据。如果一个 cookie 标记为 secure，那么，它与 WEB 服务器之间就通过 HTTPS 或者其它安全协议传递数据。不过，设置了 secure 属性不代表其他人不能看到你机器本地保存的 cookie。换句话说，把 cookie 设置为 secure，只保证 cookie 与 WEB 服务器之间的数据传输过程加密，而保存在本地的 cookie 文件并不加密。如果想让本地 cookie 也加密，得自己加密数据。
 
 我们可以将设置和获取 cookie 的方法进行简单的封装:
 
