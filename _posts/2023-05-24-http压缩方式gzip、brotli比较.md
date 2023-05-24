@@ -6,7 +6,7 @@ date: 2023-05-24
 author: Li Yucang
 catalog: true
 tags:
-  - gzip、br、压缩
+  - gzip、br、压缩、http
 ---
 
 # http压缩方式gzip、brotli比较
