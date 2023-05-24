@@ -492,7 +492,7 @@ Can I Use网站(https://caniuse.com/brotli)记录了浏览器采用的技术，�
 
 5、你会发现 Brotli 在浏览器中几乎得到了普遍支持，如果不是你习惯的一些基准测试工具的话。
 
-6、Brotli是免费使用和开源的。如果您使用与Broti兼容的CDN，例如Cloudflare ，这是一个优势。
+6、Brotli是免费使用和开源的。如果您使用与Broti兼容的CDN，这是一个优势。
 
 ## 开启 gzip/br 压缩
 
