@@ -1,7 +1,7 @@
 ---
 layout: post
 title: http压缩方式gzip、brotli比较
-subtitle: 使用压缩优化HTTP传输速度
+subtitle: 使用压缩优化HTTP传输时间
 date: 2023-05-24
 author: Li Yucang
 catalog: true
