@@ -2,5 +2,8 @@
   "eslint.autoFixOnSave": true,
   "files.associations": {
     "iostream": "cpp"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   }
 }
